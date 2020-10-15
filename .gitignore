@@ -146,3 +146,5 @@ outputs/
 
 # mypy cache
 .mypy_cache
+
+data
