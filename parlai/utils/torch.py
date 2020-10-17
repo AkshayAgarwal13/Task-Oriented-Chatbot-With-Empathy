@@ -52,10 +52,12 @@ def atomic_save(state_dict: Any, path: str) -> None:
     to disk. Works by writing to a temporary file, and then renaming the file to the
     final name.
     """
-
+   
     if io_utils.USE_ATOMIC_TORCH_SAVE:
         with open(path + ".tmp", "wb") as f:
             torch.save(state_dict, f)
+        if os.path.exists(path):
+            os.remove(path)
         os.rename(path + ".tmp", path)
     else:
         with io_utils.PathManager.open(path, "wb") as f:
