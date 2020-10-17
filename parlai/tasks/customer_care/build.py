@@ -9,7 +9,6 @@ import os
 """
 File added by Akshay which downloads the Twitter Customer Care dataset and creates a task
 
-
 """
 RESOURCES = [
     DownloadableFile(
@@ -22,6 +21,13 @@ RESOURCES = [
     DownloadableFile(
         'https://raw.githubusercontent.com/AkshayAgarwal13/ParlAi_Test/main/valid.txt',
         'valid.txt',
+        '61fc2cd964fb935ea1cd736c149755495075695312ecc60b21eb10419f6b8ad7',
+        zipped=False,
+    ),
+
+    DownloadableFile(
+        'https://raw.githubusercontent.com/AkshayAgarwal13/ParlAi_Test/main/test.txt',
+        'test.txt',
         '61fc2cd964fb935ea1cd736c149755495075695312ecc60b21eb10419f6b8ad7',
         zipped=False,
     ),
@@ -40,7 +46,7 @@ def build(opt):
         build_data.make_dir(dpath)
 
         # Download the data.
-        for downloadable_file in RESOURCES[:2]:
+        for downloadable_file in RESOURCES[:3]:
             downloadable_file.download_file(dpath)
 
         # Mark the data as built.
