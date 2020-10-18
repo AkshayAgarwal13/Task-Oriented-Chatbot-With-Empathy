@@ -14,7 +14,7 @@ from parlai.scripts.display_model import DisplayModel
 
 
 def display_data(dataset, datatype='train'):
-    DisplayData.main(task='customer_care', num_examples=5, datatype='test')
+    DisplayData.main(task=dataset, num_examples=5, datatype=datatype)
 
 
 # Training a model from scratch on customer_care dataset
@@ -88,11 +88,11 @@ def predict_main(model, dataset):
 
 
 if __name__ == "__main__":
-    #display_data('customer_care', 'train')
+    display_data('customer_care', 'train')
     #train_from_scratch()
     #train_fine_tune('empathetic_dialogues')
     #train_fine_tune('customer_care')
-    predict_main('fine_tuned_empathetic_dialogues/model', 'customer_care')
+    #predict_main('fine_tuned_empathetic_dialogues/model', 'customer_care')
 
 
 
