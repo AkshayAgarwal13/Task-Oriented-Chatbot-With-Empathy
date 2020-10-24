@@ -16,10 +16,10 @@ from parlai.scripts.train_model import TrainModel
 
 TrainModel.main(
     # similar to before
-    #task='customer_care',
-    task = 'empatheticdialogues', 
+    task='customer_care',
+    #task = 'empatheticdialogues', 
     model='transformer/generator',
-    model_file='pretrained_transformer_empathy/model',
+    model_file='pretrained_transformer_cc_full/model',
     
     # initialize with a pretrained model
     init_model='zoo:tutorial_transformer_generator/model',

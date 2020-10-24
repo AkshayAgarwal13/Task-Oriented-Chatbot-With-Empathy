@@ -16,13 +16,13 @@ from parlai.scripts.train_model import TrainModel
 
 TrainModel.main(
     # similar to before
-    #task='customer_care',
-    task = 'empatheticdialogues', 
+    task='empathetic_dialogues',
+    #task = 'empatheticdialogues', 
     model='transformer/generator',
-    model_file='pretrained_transformer_empathy/model',
+    model_file='pretrained_transformer_cc_empathy/model',
     
     # initialize with a pretrained model
-    init_model='zoo:tutorial_transformer_generator/model',
+    init_model='pretrained_transformer_cc/model',
     #init_model = '..\..\data\models\empathy',
     # arguments we get from the pretrained model.
     # Unfortunately, these must be looked up separately for each model.
@@ -30,7 +30,7 @@ TrainModel.main(
     label_truncate=100, ffn_size=2048, embedding_size=512,
     activation='gelu', variant='xlm',
     dict_lower=True, dict_tokenizer='bpe',
-    dict_file='zoo:tutorial_transformer_generator/model.dict',
+    dict_file='pretrained_transformer_cc/model.dict',
     #dict_file = 'zoo:bert/model.vocab',
     learn_positional_embeddings=True,
     
