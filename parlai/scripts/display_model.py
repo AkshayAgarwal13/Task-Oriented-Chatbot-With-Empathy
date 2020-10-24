@@ -53,7 +53,7 @@ def setup_args():
         help='Display additional debug info, e.g. the per-token loss breakdown for generative models.',
     )
     # by default we want to display info about the validation set
-    parser.set_defaults(datatype='valid')
+    parser.set_defaults(datatype='test')
     return parser
 
 
