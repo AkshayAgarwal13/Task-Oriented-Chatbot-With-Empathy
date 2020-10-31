@@ -14,7 +14,7 @@ from parlai.scripts.display_model import DisplayModel
 from parlai.scripts.eval_model import EvalModel
 from parlai.utils.misc import nice_report
 import sys
-from utils import display_results_retrieval, decode_args
+from utils import display_results, decode_args
 ############################################################################################################
 # run_mode = 'local' for local runs
 #          = 'azuare_fast' for faster azure run
@@ -197,4 +197,4 @@ if __name__ == "__main__":
     main(models_to_train, models_to_predict, run_mode)
 
     print('\n\nmodels_to_train: {0}\nmodels_to_predict: {1}\nrun_mode: {2}'.format(models_to_train, models_to_predict, run_mode))
-    display_results_retrieval(model_dicts)
+    display_results(model_dicts, ['hits@1', 'hits@5', 'hits@10', 'hits@100'])
