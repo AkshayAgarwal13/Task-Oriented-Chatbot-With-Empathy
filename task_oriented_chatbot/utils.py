@@ -37,7 +37,7 @@ def display_results_generative(model_dicts):
         m = model_dicts[model]
         model_name = m['model_name']
         ppl_valid, ppl_test = '-', '-'
-        if model == 'pretrained_baseline':
+        if model in ['pretrained_baseline', 'finetuned_ed']:
             file = 'results/'+m['model_name']
             with open(file, 'r') as json_file:
                 data = json.load(json_file)
@@ -75,7 +75,7 @@ def display_results_retrieval(model_dicts):
         model_name = m['model_name']
         hits1_valid, hits5_valid, hits10_valid, hits100_valid = '-', '-', '-', '-'
         hits1_test, hits5_test, hits10_test, hits100_test = '-', '-', '-', '-'
-        if model == 'pretrained_baseline':
+        if model in ['pretrained_baseline', 'finetuned_ed']:
             file = 'results/'+m['model_name']
             with open(file, 'r') as json_file:
                 data = json.load(json_file)

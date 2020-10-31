@@ -26,8 +26,8 @@ run_mode = 'local'
 models_to_train = ['finetuned_ed', 'finetuned_cc', 'finetuned_ed_cc']
 models_to_predict = ['pretrained_baseline', 'finetuned_ed', 'finetuned_cc', 'finetuned_ed_cc']
 
-#models_to_train = []
-#models_to_predict = ['finetuned_ed']
+models_to_train = ['finetuned_cc', 'finetuned_ed_cc']
+models_to_predict = ['pretrained_baseline', 'finetuned_ed']
 ############################################################################################################
 
 run_modes = {
@@ -164,23 +164,16 @@ def train_main(model_dict, run_mode):
 
 def predict_main(model_dict, run_mode):
     params = run_modes[run_mode]
-    if run_mode=='display':
-        DisplayModel.main(
-        task=model_dict['predict_dataset'],
-        model_file=model_dict['predict_model_file'],
-        num_examples=params['num_examples'],
-        skip_generation=False
-        )
-    else:
-        return EvalModel.main(
-        task=model_dict['predict_dataset'],
-        model_file=model_dict['predict_model_file'],
-        metrics =  ['ppl','f1','accuracy'],
-        num_examples=params['num_examples'],
-        eval_candidates = 'batch',
-        batchsize = model_dict['batchsize'],
-        report_filename='results/'+model_dict['model_name']
-        )
+    # No display mode for retrieval based models
+    return EvalModel.main(
+    task=model_dict['predict_dataset'],
+    model_file=model_dict['predict_model_file'],
+    metrics =  ['ppl','f1','accuracy'],
+    num_examples=params['num_examples'],
+    eval_candidates = 'batch',
+    batchsize = model_dict['batchsize'],
+    report_filename='results/'+model_dict['model_name']
+    )
 
 def main(models_to_train, models_to_predict, run_mode='local'):
     predict_results = {}

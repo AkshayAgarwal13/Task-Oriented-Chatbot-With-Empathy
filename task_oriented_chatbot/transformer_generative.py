@@ -26,8 +26,8 @@ run_mode = 'local'
 models_to_train = ['finetuned_ed', 'finetuned_cc', 'finetuned_ed_cc']
 models_to_predict = ['pretrained_baseline', 'finetuned_ed', 'finetuned_cc', 'finetuned_ed_cc']
 
-#models_to_train = []
-#models_to_predict = ['finetuned_ed']
+models_to_train = ['finetuned_cc', 'finetuned_ed_cc']
+models_to_predict = ['pretrained_baseline', 'finetuned_ed']
 ############################################################################################################
 
 run_modes = {
