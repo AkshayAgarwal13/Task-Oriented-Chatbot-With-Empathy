@@ -16,9 +16,10 @@ from parlai.utils.misc import nice_report
 import sys
 from utils import display_results_generative, decode_args
 ############################################################################################################
-# debug_flag = 0 for local runs
-#            = 1 for faster azure run
-#            = 2 for full azure run
+# run_mode = 'local' for local runs
+#          = 'azuare_fast' for faster azure run
+#          = 'azure' for full azure run
+#          = 'display' to just display results or run predict via DisplayModel
 run_mode = 'local'
 
 # Select models to train and predict. It can be overwritten using runtime arguments
@@ -185,6 +186,8 @@ if __name__ == "__main__":
     #display_main('customer_care')
     if len(sys.argv) > 1:
         models_to_train, models_to_predict, run_mode = decode_args(sys.argv[1:], run_modes, model_dicts)
+
+    print('\n\nmodels_to_train: {0}\nmodels_to_predict: {1}\nrun_mode: {2}'.format(models_to_train, models_to_predict, run_mode))
     main(models_to_train, models_to_predict, run_mode)
 
     print('\n\nmodels_to_train: {0}\nmodels_to_predict: {1}\nrun_mode: {2}'.format(models_to_train, models_to_predict, run_mode))
