@@ -14,7 +14,7 @@ from parlai.scripts.display_model import DisplayModel
 from parlai.scripts.eval_model import EvalModel
 from parlai.utils.misc import nice_report
 import sys
-from utils import display_results
+from utils import display_results_generative, decode_args
 ############################################################################################################
 # debug_flag = 0 for local runs
 #            = 1 for faster azure run
@@ -25,8 +25,8 @@ run_mode = 'local'
 models_to_train = ['finetuned_ed', 'finetuned_cc', 'finetuned_ed_cc']
 models_to_predict = ['pretrained_baseline', 'finetuned_ed', 'finetuned_cc', 'finetuned_ed_cc']
 
-models_to_train = []
-models_to_predict = ['finetuned_ed']
+#models_to_train = []
+#models_to_predict = ['finetuned_ed']
 ############################################################################################################
 
 run_modes = {
@@ -53,6 +53,9 @@ run_modes = {
         'label_truncate' : 128,
         # Predict parameters
         'num_examples' : -1
+    },
+    'display' : {
+        'num_examples' : 10
     }
 }
 
@@ -149,8 +152,7 @@ def train_main(model_dict, run_mode):
 
 def predict_main(model_dict, run_mode):
     params = run_modes[run_mode]
-
-    if run_mode=='local':
+    if run_mode=='display':
         DisplayModel.main(
         task=model_dict['predict_dataset'],
         model_file=model_dict['predict_model_file'],
@@ -166,26 +168,6 @@ def predict_main(model_dict, run_mode):
         report_filename='results/'+model_dict['model_name']
         )
 
-
-def decode_args(args):
-    run_mode, train_flag, predict_flag = 'local', True, True
-    models_to_train, models_to_predict = [], []
-    for arg in args:
-        if arg.lower() == 'train':
-            predict_flag = False
-        elif arg.lower() == 'predict':
-            train_flag = False
-        elif arg.lower() in run_modes:
-            run_mode = arg.lower()
-        elif arg.lower() in model_dicts:
-            models_to_train.append(arg.lower())
-            models_to_predict.append(arg.lower())
-    if train_flag:
-        models_to_predict = []
-    if predict_flag:
-        models_to_train = []
-    return models_to_train, models_to_predict, run_mode
-
 def main(models_to_train, models_to_predict, run_mode='local'):
     predict_results = {}
     for model in models_to_train:
@@ -199,19 +181,14 @@ def main(models_to_train, models_to_predict, run_mode='local'):
         else:
             print('{} not defined in model_dicts()'.format(model))
 
-    for model in predict_results:
-        print('\n\n------------------------------------------------------------------------------------------')
-        print('Prediction results for model: {}'.format(model))
-        print(nice_report(predict_results[model]))
-        print('------------------------------------------------------------------------------------------')
-
 if __name__ == "__main__":
     #display_main('customer_care')
     if len(sys.argv) > 1:
-        models_to_train, models_to_predict, run_mode = decode_args(sys.argv[1:])
-    print(models_to_train, models_to_predict, run_mode)
-    #main(models_to_train, models_to_predict, run_mode)
-    display_results(model_dicts)
+        models_to_train, models_to_predict, run_mode = decode_args(sys.argv[1:], run_modes, model_dicts)
+    main(models_to_train, models_to_predict, run_mode)
+
+    print('\n\nmodels_to_train: {0}\nmodels_to_predict: {1}\nrun_mode: {2}'.format(models_to_train, models_to_predict, run_mode))
+    display_results_generative(model_dicts)
 
 
 
