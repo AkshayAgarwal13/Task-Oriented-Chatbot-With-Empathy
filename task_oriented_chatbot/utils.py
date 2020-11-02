@@ -58,7 +58,7 @@ def get_metrics_EvalModel(file, metric_names):
 
 def display_results(model_dicts, metric_names):
     print('\n\n------------------------------------------------------------------------------------------')
-    strFormat = '{:>50}' + 2*len(metric_names)*'{:^15}'
+    strFormat = '{:>55}' + 2*len(metric_names)*'{:^15}'
     title = ['Models'] + [m+'_valid' for m in metric_names] + [m+'_test' for m in metric_names]
     print(strFormat.format(*title))
     for model in model_dicts:

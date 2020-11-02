@@ -24,7 +24,7 @@ run_mode = 'local'
 
 # Select models to train and predict. It can be overwritten using runtime arguments
 models_to_train = ['finetuned_ed', 'finetuned_cc', 'finetuned_ed_cc']
-models_to_predict = ['pretrained_baseline', 'finetuned_ed', 'finetuned_cc', 'finetuned_ed_cc']
+models_to_predict = ['pretrained_baseline', 'finetuned_ed']
 
 models_to_train = ['finetuned_cc', 'finetuned_ed_cc']
 models_to_predict = ['pretrained_baseline', 'finetuned_ed']
@@ -48,7 +48,7 @@ run_modes = {
         'num_examples' : -1
     },
     'azure' : {
-        'max_train_time' : 8*60*60,
+        'max_train_time' : 5*60*60,
         'validation_every_n_epochs' : 0.5,
         'text_truncate' : 400,
         'label_truncate' : 150,
