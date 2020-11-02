@@ -30,7 +30,7 @@ def decode_args(args, run_modes, model_dicts):
         models_to_train = []
     return models_to_train, models_to_predict, run_mode
 
-def get_metrics(file, metric_names):
+def get_metrics_TrainModel(file, metric_names):
     metrics = {}
     for n in metric_names:
         metrics[n] = '-'
@@ -45,6 +45,17 @@ def get_metrics(file, metric_names):
                         metrics[n] = values[idx]
     return metrics
 
+def get_metrics_EvalModel(file, metric_names):
+    metrics = {}
+    for n in metric_names:
+        metrics[n] = '-'
+    with open(file, 'r') as json_file:
+        data = json.load(json_file)
+        for metric in metric_names:
+            if metric in data['report']:
+                metrics[metric] = '{:.2f}'.format(data['report'][metric])
+    return metrics
+
 def display_results(model_dicts, metric_names):
     print('\n\n------------------------------------------------------------------------------------------')
     strFormat = '{:>50}' + 2*len(metric_names)*'{:^15}'
@@ -56,22 +67,17 @@ def display_results(model_dicts, metric_names):
         metrics_valid = {metric:'-' for metric in metric_names}
         metrics_test = {metric:'-' for metric in metric_names}
         if model in ['pretrained_baseline', 'finetuned_ed']:
-            file = 'results/'+m['model_name']
-            with open(file, 'r') as json_file:
-                data = json.load(json_file)
-                datatype = data['opt']['datatype']
-                for metric in metric_names:
-                    if metric in data['report']:
-                        if datatype=='valid':
-                            metrics_valid[metric] = '{:.2f}'.format(data['report'][metric])
-                        else:
-                            metrics_test[metric] = '{:.2f}'.format(data['report'][metric])
+            valid_file = 'results/'+m['model_name']+'_valid'
+            metrics_valid = get_metrics_EvalModel(valid_file, metric_names)
+
+            test_file = 'results/'+m['model_name']+'_test'
+            metrics_test = get_metrics_EvalModel(test_file, metric_names)
         else:
             valid_file = m['train_model_file']+'.valid'
-            metrics_valid = get_metrics(valid_file, metric_names)
+            metrics_valid = get_metrics_TrainModel(valid_file, metric_names)
 
             test_file = m['train_model_file']+'.test'
-            metrics_test = get_metrics(test_file, metric_names)
+            metrics_test = get_metrics_TrainModel(test_file, metric_names)
 
         metric_values = [model_name] + [metrics_valid[metric] for metric in metric_names] + [metrics_test[metric] for metric in metric_names]
         print(strFormat.format(*metric_values))

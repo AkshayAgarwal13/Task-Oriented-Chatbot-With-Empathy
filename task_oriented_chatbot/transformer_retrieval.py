@@ -165,18 +165,29 @@ def train_main(model_dict, run_mode):
 def predict_main(model_dict, run_mode):
     params = run_modes[run_mode]
     # No display mode for retrieval based models
-    return EvalModel.main(
+    EvalModel.main(
     task=model_dict['predict_dataset'],
     model_file=model_dict['predict_model_file'],
     metrics =  ['ppl','f1','accuracy'],
     num_examples=params['num_examples'],
     eval_candidates = 'batch',
     batchsize = model_dict['batchsize'],
-    report_filename='results/'+model_dict['model_name']
+    report_filename='results/'+model_dict['model_name']+'_valid',
+    datatype='valid'
+    )
+
+    EvalModel.main(
+    task=model_dict['predict_dataset'],
+    model_file=model_dict['predict_model_file'],
+    metrics =  ['ppl','f1','accuracy'],
+    num_examples=params['num_examples'],
+    eval_candidates = 'batch',
+    batchsize = model_dict['batchsize'],
+    report_filename='results/'+model_dict['model_name']+'_test',
+    datatype='test'
     )
 
 def main(models_to_train, models_to_predict, run_mode='local'):
-    predict_results = {}
     for model in models_to_train:
         if model in model_dicts:
             train_main(model_dicts[model], run_mode)
@@ -184,7 +195,7 @@ def main(models_to_train, models_to_predict, run_mode='local'):
             print('{} not defined in model_dicts()'.format(model))
     for model in models_to_predict:
         if model in model_dicts:
-            predict_results[model] = predict_main(model_dicts[model], run_mode)
+            predict_main(model_dicts[model], run_mode)
         else:
             print('{} not defined in model_dicts()'.format(model))
 
