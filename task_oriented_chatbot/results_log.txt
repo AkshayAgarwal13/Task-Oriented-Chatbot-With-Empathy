@@ -1,0 +1,77 @@
+
+
+------------------------------------------------------------------------------------------
+Time Stamp: 03/11/2020 00:23:41
+                                                 Models hits@1_valid   hits@5_valid   hits@10_valid hits@100_valid   hits@1_test    hits@5_test   hits@10_test   hits@100_test 
+              transformer_retrieval_pretrained_baseline     0.30           0.80           1.00           1.00           0.30           0.80           1.00           1.00      
+                     transformer_retrieval_finetuned_ed     0.50           1.00           1.00           1.00           0.30           0.80           1.00           1.00      
+                     transformer_retrieval_finetuned_cc     .6309          .9515            1              1            .5694          .9340            1              1       
+                  transformer_retrieval_finetuned_ed_cc     .6304          .9507            1              1            .5718          .9355            1              1       
+------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------
+Time Stamp: 03/11/2020 00:24:23
+                                                 Models   ppl_valid      ppl_test    
+             transformer_generative_pretrained_baseline     29.67          37.34     
+                    transformer_generative_finetuned_ed     34.57          41.66     
+                    transformer_generative_finetuned_cc     10.26          10.01     
+                 transformer_generative_finetuned_ed_cc     10.22          10.01     
+------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------
+Time Stamp: 03/11/2020 00:24:33
+                                                 Models hits@1_valid   hits@5_valid   hits@10_valid hits@100_valid   hits@1_test    hits@5_test   hits@10_test   hits@100_test 
+  transformer_polyencoder_retrieval_pretrained_baseline     0.21           0.67           1.00           1.00           0.20           0.66           1.00           1.00      
+         transformer_polyencoder_retrieval_finetuned_ed     0.39           0.80           1.00           1.00           0.35           0.77           1.00           1.00      
+         transformer_polyencoder_retrieval_finetuned_cc     .5863          .9408            1              1            .5221          .9135            1              1       
+      transformer_polyencoder_retrieval_finetuned_ed_cc     .5994          .9492            1              1            .5453          .9206            1              1       
+------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------
+Time Stamp: 03/11/2020 00:32:27
+                                                 Models   ppl_valid      ppl_test    
+             transformer_generative_pretrained_baseline     29.67          37.34     
+                    transformer_generative_finetuned_ed     34.57          41.66     
+                    transformer_generative_finetuned_cc     10.26          10.01     
+                 transformer_generative_finetuned_ed_cc     10.22          10.01     
+------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------
+Time Stamp: 03/11/2020 06:44:39
+                                                 Models   ppl_valid      ppl_test    
+             transformer_generative_pretrained_baseline     30.04          28.64     
+                    transformer_generative_finetuned_ed     34.72          33.06     
+                    transformer_generative_finetuned_cc     10.26          10.01     
+                 transformer_generative_finetuned_ed_cc     10.22          10.01     
+------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------
+Time Stamp: 03/11/2020 07:10:09
+                                                 Models hits@1_valid   hits@5_valid   hits@10_valid hits@100_valid   hits@1_test    hits@5_test   hits@10_test   hits@100_test 
+              transformer_retrieval_pretrained_baseline     0.30           0.74           1.00           1.00           0.29           0.73           1.00           1.00      
+                     transformer_retrieval_finetuned_ed     0.44           0.83           1.00           1.00           0.41           0.81           1.00           1.00      
+                     transformer_retrieval_finetuned_cc     .6309          .9515            1              1            .5694          .9340            1              1       
+                  transformer_retrieval_finetuned_ed_cc     .6304          .9507            1              1            .5718          .9355            1              1       
+------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------
+Time Stamp: 03/11/2020 07:10:59
+                                                 Models hits@1_valid   hits@5_valid   hits@10_valid hits@100_valid   hits@1_test    hits@5_test   hits@10_test   hits@100_test 
+  transformer_polyencoder_retrieval_pretrained_baseline     0.21           0.67           1.00           1.00           0.20           0.66           1.00           1.00      
+         transformer_polyencoder_retrieval_finetuned_ed     0.39           0.80           1.00           1.00           0.35           0.77           1.00           1.00      
+         transformer_polyencoder_retrieval_finetuned_cc     .5863          .9408            1              1            .5221          .9135            1              1       
+      transformer_polyencoder_retrieval_finetuned_ed_cc     .5994          .9492            1              1            .5453          .9206            1              1       
+------------------------------------------------------------------------------------------
+

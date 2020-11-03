@@ -1,0 +1,8 @@
+test:
+    ctpb  ctps  exps  exs  gpu_mem  loss        lr  ltpb  ltps   ppl  token_acc  total_train_updates  tpb  tps
+    3647  2068 47.34 5259    .0958 2.683 6.009e-07  1355 768.3 14.62      .4152                    6 5002 2836
+
+test:
+    ctpb  ctps  exps  exs  gpu_mem  loss    lr  ltpb  ltps   ppl  token_acc  total_train_updates  tpb  tps
+    3147  2171 49.68 5259   .09593 2.458 1e-05  1169 806.4 11.68      .4440                 2788 4316 2977
+
