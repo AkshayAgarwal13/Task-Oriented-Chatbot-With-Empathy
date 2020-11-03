@@ -10,6 +10,7 @@
 import sys
 import re
 import json
+from datetime import datetime
 
 def decode_args(args, run_modes, model_dicts):
     run_mode, train_flag, predict_flag = 'local', True, True
@@ -57,10 +58,13 @@ def get_metrics_EvalModel(file, metric_names):
     return metrics
 
 def display_results(model_dicts, metric_names):
-    print('\n\n------------------------------------------------------------------------------------------')
-    strFormat = '{:>55}' + 2*len(metric_names)*'{:^15}'
+    result_file = 'results_log.txt'
+    result_str = '\n\n------------------------------------------------------------------------------------------\n'
+    now = datetime.now()
+    result_str += 'Time Stamp: ' + now.strftime("%d/%m/%Y %H:%M:%S") + '\n'
+    strFormat = '{:>55}' + 2*len(metric_names)*'{:^15}' + '\n'
     title = ['Models'] + [m+'_valid' for m in metric_names] + [m+'_test' for m in metric_names]
-    print(strFormat.format(*title))
+    result_str += strFormat.format(*title)
     for model in model_dicts:
         m = model_dicts[model]
         model_name = m['model_name']
@@ -80,9 +84,13 @@ def display_results(model_dicts, metric_names):
             metrics_test = get_metrics_TrainModel(test_file, metric_names)
 
         metric_values = [model_name] + [metrics_valid[metric] for metric in metric_names] + [metrics_test[metric] for metric in metric_names]
-        print(strFormat.format(*metric_values))
+        result_str += strFormat.format(*metric_values)
+    result_str += '------------------------------------------------------------------------------------------\n\n'
+    print(result_str)
 
-    print('------------------------------------------------------------------------------------------')
+    with open(result_file, 'a') as f:
+        f.write(result_str)
+
 
 
 
